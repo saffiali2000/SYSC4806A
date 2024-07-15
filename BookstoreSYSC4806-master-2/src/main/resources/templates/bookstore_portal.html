@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Book Store Portal</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        body {
+            display: flex;
+        }
+        .sidebar {
+            flex: 0 0 200px;
+            height: 100vh;
+            background-color: #f0f0f0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .sidebar a {
+            display: block;
+            margin-bottom: 10px;
+            text-decoration: none;
+            color: #333;
+        }
+        .content {
+            flex: 1;
+            padding: 50px;
+        }
+    </style>
+</head>
+<body>
+<div class="sidebar">
+    <h1>Book Store Portal</h1>
+    <div class="sidebar-links">
+        <a th:href="@{/bookstore_portal}">BookStore Portal</a>
+        <a th:href="@{/cart}">View Cart</a>
+        <a th:href="@{/customer_purchased_history}">Customer Purchased History</a>
+        <a th:href="@{/customer_logout}">Log Out</a>
+        <a th:href="@{/}">Return to Home Portal</a>
+    </div>
+</div>
+        <div>
+
+            <form action="" method="post" th:object="${search}">
+                <h2>Search Books:</h2><br />
+
+                <label for="filter">Search By:</label>
+                <select name="filter" id="filter">
+                    <option value="by-name">By Name</option>
+                    <option value="by-publisher">By Publisher</option>
+                    <option value="by-author">By Author</option>
+                </select> <br />
+
+                <label for="search">Search For:</label>
+                <input type="text" id="search" value=""     name="search" /><br />
+                <input type="submit" value="Search Book"    name="search_book"/><br />
+                <input type="submit" value="View All Books" name="all_books"/>
+            </form>
+
+            <div>
+                <p style="color: red" th:text="${search_error}"></p>
+                <table>
+                    <tbody>
+                        <thead>
+                            <th>ISBN</th>
+                            <th>Version</th>
+                            <th>Book Name</th>
+                            <th>Publisher</th>
+                            <th>Author</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Recommended</th>
+                        </thead>
+                        <tr th:each="book: ${books}">
+                            <td th:text ="${book.isbn}" />
+                            <td th:text="${book.version}" />
+                            <td th:text="${book.bookName}" />
+                            <td th:text="${book.publisher}" />
+                            <td th:text="${book.author}" />
+                            <td th:text="${book.price}" />
+                            <td th:text="${book.quantity}" />
+
+                            <td th:if="${book.recommended}">Yes</td>
+                            <td th:if="${!book.recommended}"></td>
+
+
+                            <td>
+                                <form method="post" action="" th:object="${customer}">
+                                    <input type="hidden"   th:value="${book.isbn}"      name="isbn">
+                                    <input type="hidden"   th:value="${book.version}"   name="version">
+                                    <input type="submit"   value="Buy Book"  name="buy_book">
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </body>
+</html>

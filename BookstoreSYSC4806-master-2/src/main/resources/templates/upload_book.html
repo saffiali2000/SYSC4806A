@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <title>Owner Upload Book</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <style>
+    body {
+      display: flex;
+    }
+    .sidebar {
+      flex: 0 0 200px;
+      height: 100vh;
+      background-color: #f0f0f0;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    .sidebar a {
+      display: block;
+      margin-bottom: 10px;
+      text-decoration: none;
+      color: #333;
+    }
+    .content {
+      flex: 1;
+      padding: 50px;
+    }
+  </style>
+</head>
+<body>
+<div class="sidebar">
+  <h1>Owner Panel</h1>
+  <div class="sidebar-links">
+    <a th:href="@{/owner_portal}">View Books</a>
+    <a th:href="@{/upload_book}">Create Books</a>
+    <a th:href="@{/edit_book}">Edit Books</a>
+    <a th:href="@{/owner_logout}">Log Out</a>
+  </div>
+</div>
+<div class="content">
+  <p th:text="${owner.username}+' on this page you can Create new books to store!'"></p>
+  <h2>Create Book</h2>
+  <table>
+    <tbody>
+    <tr>
+      <td>
+        <form method="post" action="" th:object="${book}">
+          <label>Isbn:<input type="text" placeholder="Enter Isbn" name="isbn" /></label
+          ><br />
+          <label>Name:<input type="text" placeholder="Enter Name" name="bookName" /></label
+          ><br />
+          <label>Publisher:<input type="text" placeholder="Enter Publisher" name="publisher" /></label>
+          <br />
+          <label>Author:<input type="text" placeholder="Enter Author" name="author" /></label>
+          <br />
+          <label>Quantity:<input type="text" placeholder="Enter Quantity" name="quantity" /></label>
+          <br />
+          <label>Price:<input type="text" placeholder="Enter Price" name="price" /></label
+          ><br />
+          <input type="submit" value="Add Book" name="AddBook"/>
+          <input type="reset" value="Reset" />
+          <br />
+          <p style="color: red" th:text="${create_book_error}"></p>
+        </form>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<div>
+  <p><a th:href="@{/}" >Return to Home Portal</a></p>
+</div>
+</body>
+</html>

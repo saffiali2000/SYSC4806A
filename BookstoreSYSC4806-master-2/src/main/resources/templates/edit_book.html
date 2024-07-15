@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Owner Edit Book</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        body {
+            display: flex;
+        }
+        .sidebar {
+            flex: 0 0 200px;
+            height: 100vh;
+            background-color: #f0f0f0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .sidebar a {
+            display: block;
+            margin-bottom: 10px;
+            text-decoration: none;
+            color: #333;
+        }
+        .content {
+            flex: 1;
+            padding: 50px;
+        }
+    </style>
+</head>
+<body>
+<div class="sidebar">
+    <h1>Owner Panel</h1>
+    <div class="sidebar-links">
+        <a th:href="@{/owner_portal}">View Books</a>
+        <a th:href="@{/upload_book}">Create Books</a>
+        <a th:href="@{/edit_book}">Edit Books</a>
+        <a th:href="@{/owner_logout}">Log Out</a>
+        <a th:href="@{/}">Return to Home Portal</a>
+    </div>
+</div>
+<div class="content">
+    <p th:text="${owner.username}+' on this page you can edit existing books!'"></p>
+    <h2>Edit Book</h2>
+    <form method="post" th:action="@{/edit_book}" th:object="${book}">
+        <label>ISBN:<input type="text" placeholder="Enter ISBN" name="isbn" /></label><br />
+        <label>Quantity:<input type="text" placeholder="Enter Quantity" name="quantity" /></label><br />
+        <input type="submit" value="Edit Book" name="edit_book"/>
+        <input type="submit" value="Delete Book" name="delete_book"/>
+        <p style="color: red" th:text="${book_search_error}"></p>
+    </form>
+</div>
+</body>
+</html>

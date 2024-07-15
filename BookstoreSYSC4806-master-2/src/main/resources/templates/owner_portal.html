@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <title>Owner Portal</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <style>
+    body {
+      display: flex;
+    }
+    .sidebar {
+      flex: 0 0 200px;
+      height: 100vh;
+      background-color: #f0f0f0;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    .sidebar a {
+      display: block;
+      margin-bottom: 10px;
+      text-decoration: none;
+      color: #333;
+    }
+    .content {
+      flex: 1;
+      padding: 50px;
+    }
+  </style>
+</head>
+<body>
+<div class="sidebar">
+  <h1>Owner Portal</h1>
+  <div class="sidebar-links">
+    <a th:href="@{/owner_portal}">View Books</a>
+    <a th:href="@{/upload_book}">Create Books</a>
+    <a th:href="@{/edit_book}">Edit Books</a>
+    <a th:href="@{/owner_logout}">Log Out</a>
+    <a th:href="@{/}">Return to Home Portal</a>
+  </div>
+</div>
+
+<div class="content">
+  <p th:text="'Welcome '+${owner.username}+' to the owner portal where you can view all books!'"></p>
+  <h2>All Books</h2>
+  <table>
+    <tbody class="tbody">
+    <thead>
+    <th>Isbn</th>
+    <th>Version</th>
+    <th>Book Name</th>
+    <th>Publisher</th>
+    <th>Author</th>
+    <th>Price</th>
+    <th>Quantity</th>
+    </thead>
+    <tr th:each="book: ${books}">
+      <td th:text="${book.isbn}" />
+      <td th:text="${book.version}" />
+      <td th:text="${book.bookName}" />
+      <td th:text="${book.publisher}" />
+      <td th:text="${book.author}" />
+      <td th:text="${book.price}" />
+      <td th:text="${book.quantity}" />
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

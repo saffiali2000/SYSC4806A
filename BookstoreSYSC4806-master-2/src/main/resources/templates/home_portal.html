@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+<head>
+  <title>Home Portal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 32px;
+      color: #333;
+      margin-bottom: 30px;
+    }
+
+    a.button {
+      background-color: #007BFF;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      display: inline-block;
+      font-size: 16px;
+      margin: 10px 2px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Welcome to G22 Book Store</h1>
+  <a class="button" th:href="@{/owner_signup}">Owner Signup</a>
+  <br>
+  <a class="button" th:href="@{/owner_login}">Owner Login</a>
+  <br>
+  <a class="button" th:href="@{/customer_signup}">Customer Signup</a>
+  <br>
+  <a class="button" th:href="@{/customer_login}">Customer Login</a>
+  </div>
+</body>
+</html>
